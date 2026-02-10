@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Virus Alert</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff00;
+    font-family:monospace;
+    overflow:hidden;
+}
+
+#alertBox{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:#111;
+    border:3px solid red;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 0 25px red;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="alertBox">
+    <h1>⚠️ VIRUS DETECTED!</h1>
+    <p>Scanning system files...</p>
+    <p id="scan">0% complete</p>
+</div>
+
+<script>
+let percent = 0;
+
+let scan = setInterval(()=>{
+    percent += Math.floor(Math.random()*5)+1;
+    if(percent > 100) percent = 100;
+
+    document.getElementById("scan").innerText = percent + "% complete";
+
+    if(percent === 100){
+        clearInterval(scan);
+
+        document.getElementById("alertBox").innerHTML =
+        "<h1>😂 Relax!</h1><p>This was just a prank!</p><button onclick='location.reload()'>Run Again</button>";
+    }
+},120);
+</script>
+
+</body>
+</html>
